@@ -1,0 +1,39 @@
+import random
+
+
+class Hero:
+    def __init__(self, name):
+        self.name = name
+        self.str = self._generate_stat()
+        self.dex = self._generate_stat()
+        self.wis = self._generate_stat()
+        self.hero_class = self._determine_class()
+
+    def _generate_stat(self):
+        # Генерация 4 случайных чисел
+        dice_rolls = [random.randint(1, 6) for _ in range(4)]
+        # Удаление минимального значения
+        dice_rolls.remove(min(dice_rolls))
+        # Сложение результатов и возврат значения
+        return sum(dice_rolls)
+
+    def _determine_class(self):
+        # Определение класса на основе максимальной характеристики
+        max_stat = max(self.str, self.dex, self.wis)
+
+        if max_stat == self.str:
+            return "Воин"
+        elif max_stat == self.dex:
+            return "Охотник"
+        else:
+            return "Маг"
+
+    def __str__(self):
+        return f'{self.name} ({self.hero_class}): сила={self.str}, ловкость={self.dex}, мудрость={self.wis}'
+
+# Запрос имени у пользователя
+name = input("Введите имя вашего героя: ")
+
+# Проверка работоспособности кода
+hero = Hero(name)
+print(hero)

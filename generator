@@ -31,7 +31,9 @@ class Hero:
     def __str__(self):
         return f'{self.name} ({self.hero_class}): сила={self.str}, ловкость={self.dex}, мудрость={self.wis}'
 
+# Запрос имени у пользователя
+name = input("Введите имя вашего героя: ")
 
 # Проверка работоспособности кода
-hero = Hero("Эдвин")
+hero = Hero(name)
 print(hero)
